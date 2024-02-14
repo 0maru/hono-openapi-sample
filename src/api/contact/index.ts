@@ -1,13 +1,25 @@
-import { OpenAPIHono, createRoute } from "@hono/zod-openapi";
+import { OpenAPIHono, createRoute, z } from "@hono/zod-openapi";
 import { Variables } from "..";
 
 export const contactApi = new OpenAPIHono<{ Variables: Variables }>()
+
+const ContactMessage = z.object({
+    message: z.string(),
+})
 
 const route = createRoute({
     method: 'post',
     path: '/',
     description: 'お問い合わせAPI',
-    request: {},
+    request: {
+        body: {
+            content: {
+                'application/json': {
+                    schema: ContactMessage
+                }
+            }
+        },
+    },
     responses: {
         200: {
             description: '成功',

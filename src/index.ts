@@ -14,7 +14,9 @@ app.get('/', (c) => {
 app.post('/', (c) => {
   return c.json({ message: 'Hello Hono!' })
 })
-app.get('/docs/ui', swaggerUI({ url: '/api/openapi' }))
+app.get('/docs/ui', swaggerUI({
+  url: '/api/openapi',
+}))
 app.route('/api', api)
 
 const port = 3000

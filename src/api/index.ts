@@ -11,5 +11,11 @@ api.doc("/openapi", {
         version: "1.0.0",
         title: "OpenStatus API",
     },
+    servers: [
+        {
+            url: 'http://localhost:3000',
+            description: 'Local server'
+        }
+    ]
 })
 api.route("/contact", contactApi)
